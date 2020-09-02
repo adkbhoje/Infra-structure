@@ -1,0 +1,14 @@
+# playbook.yml
+---
+#- include: playbooks/mysql.yml
+- hosts: 127.0.0.1
+  sudo: yes
+  connection: local
+  tasks:
+    - name: "ensure nginx is installed"
+      apt: 
+          name="nginx" 
+          state=installed           
+      
+#https://github.com/mnegi/packer-provisioner-ansible-local
+#https://dzone.com/articles/how-to-deploy-apps-effortlessly-with-packer-and-te
