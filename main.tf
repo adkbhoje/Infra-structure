@@ -13,24 +13,35 @@ variable "secretKey" {
 provider "aws" {
   access_key = "${var.accessKey}"
   secret_key = "${var.secretKey}"
-  region     = "us-east-2"
+  region     = "us-east-1"
 }
 
-#resource "aws_instance" "example" {
-#  ami           = "ami-0520e698dd500b1d1"
-#  instance_type = "t2.micro"
-# key_name = "test2"
-#  security_groups = [
-#        "launch-wizard-2"
-#    ]
-#}
+data "aws_ami" "ubuntu" {
+  most_recent = true
 
-resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-test-bucket-subbu123"
-  acl    = "private"
-
-  tags = {
-    Name        = "My bucket subbu 12333"
-    Environment = "Dev"
+  filter {
+    name   = "name"
+    values = ["sushil-packer-ami*"]
   }
+  owners = ["254974886611"]
 }
+
+resource "aws_instance" "example" {
+  #ami           = ""
+  ami = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+ key_name = "test2"
+  security_groups = [
+        "NSRA-Tool-sus-DEV"
+    ]
+}
+
+#resource "aws_s3_bucket" "b" {
+ #  bucket = "my-tf-test-bucket-sushil"
+ # acl    = "private"
+
+ # tags = {
+ #   Name        = "My bucket sushil"
+  #  Environment = "Dev"
+  #}
+#}
