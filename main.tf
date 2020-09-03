@@ -28,7 +28,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "example" {
   #ami           = ""
-  ami = data.aws_ami.ubuntu.id
+  ami = "data.aws_ami.ubuntu.id"
   instance_type = "t2.micro"
  key_name = "test2"
   security_groups ="${NSRA-Tool-sus-DEV-test1}"
