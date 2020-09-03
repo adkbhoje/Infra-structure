@@ -26,12 +26,12 @@ data "aws_ami" "ubuntu" {
   owners = ["254974886611"]
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "NSRA-Tool-SG" {
   #ami           = ""
   ami = "data.aws_ami.ubuntu.id"
   instance_type = "t2.micro"
- key_name = "test2"
-  security_groups ="${NSRA-Tool-sus-DEV-test1}"
+  key_name = "test2"
+  security_groups ="NSRA-Tool-sus-DEV-test1.NSRA-Tool-SG"
 }
 
 #resource "aws_s3_bucket" "b" {
