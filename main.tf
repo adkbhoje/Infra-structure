@@ -31,10 +31,7 @@ resource "aws_instance" "NSRA-Tool-SG" {
   ami = "data.aws_ami.ubuntu.id"
   instance_type = "t2.micro"
   key_name = "test2"
-  security_groups = [
-    "local.NSRA-Tool-sus-DEV-test1.id"
-      "local.NSRA-Tool-sus-DEV.id"
-      ]
+  security_group_id = "sg-022e979bc54764d78"
 }
 
 #resource "aws_s3_bucket" "b" {
