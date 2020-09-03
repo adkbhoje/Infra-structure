@@ -19,6 +19,8 @@ pipeline {
 				    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
 			    ]]) {
 					sh 'packer build -debug -var aws_access_key=${AWS_ACCESS_KEY_ID} -var aws_secret_key=${AWS_SECRET_ACCESS_KEY} ./packer/packer.json'
+				        sh 'packer validate -var aws_access_key=${AWS_ACCESS_KEY_ID} -var aws_secret_key=${AWS_SECRET_ACCESS_KEY} ./packer/packer.json'
+
 				    }
 			
 		    }
@@ -35,8 +37,8 @@ pipeline {
 				        //sh 'echo `pwd`'
 					sh 'terraform init -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'	
 				        sh 'terraform plan -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'
-					sh 'terraform apply -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'
-					sh 'terraform destroy -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'
+					sh 'terraform apply -auto-approve -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'
+					//sh 'terraform destroy -var accessKey=${AWS_ACCESS_KEY_ID} -var secretKey=${AWS_SECRET_ACCESS_KEY}'
 				    }
 			}
 		}
