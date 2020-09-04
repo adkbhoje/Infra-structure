@@ -11,8 +11,8 @@ variable "secretKey" {
 }
 
 provider "aws" {
-  access_key = "${var.accessKey}"
-  secret_key = "${var.secretKey}"
+  access_key = var.accessKey
+  secret_key = var.secretKey
   region     = "us-east-1"
 }
 resource "aws_security_group" "NSRA-WL-Webapps-TLS_sus" {
