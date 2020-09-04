@@ -1,18 +1,18 @@
 variable "accessKey" {
-  type        = string
+  type        = "string"
   description = "AWS access key id"
   default = "missing"
 }
 
 variable "secretKey" {
-  type        = string
+  type        = "string"
   description = "AWS access secret key"
   default = "missing"
 }
 
 provider "aws" {
-  access_key = var.accessKey
-  secret_key = var.secretKey
+  access_key = "${var.accessKey}"
+  secret_key = "${var.secretKey}"
   region     = "us-east-1"
 }
 resource "aws_security_group" "NSRA-WL-Webapps-TLS_sus" {
