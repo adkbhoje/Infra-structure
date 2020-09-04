@@ -1,6 +1,6 @@
 FROM ubuntu:bionic-20200807
 
-ARG TERRAFORM_VERSION="0.11.0"
+ARG TERRAFORM_VERSION="0.12.32"
 ARG ANSIBLE_VERSION="2.5.1"
 ARG PACKER_VERSION="1.5.4"
 ARG AWSCLI_VERSION="1.18.19"
@@ -14,9 +14,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
-RUN apt-get update
-RUN apt-get install ca-certificates -y
-RUN update-ca-certificates
 RUN apt-get update \
     && apt-get install -y ansible curl wget unzip  ntp
 
