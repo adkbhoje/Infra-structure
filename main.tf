@@ -26,25 +26,13 @@ data "aws_ami" "ubuntu" {
   owners = ["254974886611"]
 }
 
-# Create the Security Group
-resource "aws_security_group" "complex" {
-    #vpc_id              = "${var.vpc_id}"
-    ami = data.aws_ami.ubuntu.id
-    instance_type = "t2.micro"
-    key_name = "test2"
-    name                = "Terraform-sushil-Security-Group"
-    description         = "sus-test security group example"
-    tags {
-        Name            = "Terraform-sus-test-Security-Group"
-    }
-}
-#resource "aws_instance" "NSRA-Tool-SG" {
-  #ami           = ""
-  #ami = "data.aws_ami.ubuntu.id"
-  #instance_type = "t2.micro"
-  #key_name = "test2"
+resource "aws_instance" "example" {
+  ami           = ""
+  ami = data.aws_ami.ubuntu.id
+  instance_type = "t2.micro"
+  key_name = "test2"
   #security_group_id = "sg-022e979bc54764d78"
-#}
+}
 
 #resource "aws_s3_bucket" "b" {
  #  bucket = "my-tf-test-bucket-sushil"
