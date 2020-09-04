@@ -31,6 +31,9 @@ resource "aws_instance" "example" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name = "cloud_infra_key1"
+  tags = {
+    Name ="cloud_infra_server_1"
+    }
   #security_group_id = "sg-022e979bc54764d78"
 }
 
