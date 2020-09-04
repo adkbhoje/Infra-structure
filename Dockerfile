@@ -15,8 +15,8 @@ ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
 RUN apt-get update
-RUN sudo apt-get install ca-certificates -y
-RUN sudo update-ca-certificates
+RUN apt-get install ca-certificates -y
+RUN update-ca-certificates
 RUN apt-get update \
     && apt-get install -y ansible curl wget unzip  ntp
 
