@@ -15,6 +15,30 @@ provider "aws" {
   secret_key = "${var.secretKey}"
   region     = "us-east-1"
 }
+resource "aws_security_group" "NSRA-WL-Webapps-TLS" {
+  name   = "NSRA-WL-Webapps-TLS_sus"
+  vpc_id = "vpc-0eaa852c4918ad316"
+
+  # SSH access from the VPC
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "NSRA-sg-80-TF"
+  }
+}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -34,7 +58,7 @@ resource "aws_instance" "example" {
   tags = {
     Name ="cloud_infra_server_1"
     }
-  #security_group_id = "sg-022e979bc54764d78"
+  security_group_id = aws_security_group.NSRA-WL-Webapps-TLS.id
 }
 
 #resource "aws_s3_bucket" "b" {
