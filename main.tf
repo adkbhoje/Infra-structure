@@ -19,7 +19,7 @@ resource "aws_security_group" "NSRA-WL-Webapps-TLS_sus" {
   name   = "NSRA-WL-Webapps-TLS_sus"
   #vpc_id = "vpc-0eaa852c4918ad316"
 
-  # SSH access from the VPC
+  # Http access 
   ingress {
     description = "TLS from VPC"
     from_port   = 80
