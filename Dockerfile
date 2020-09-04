@@ -14,6 +14,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
+RUN apk update
+RUN apk add ca-certificates
+RUN update-ca-certificates
 RUN apt-get update \
     && apt-get install -y ansible curl wget unzip  ntp
 
