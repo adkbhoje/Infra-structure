@@ -15,7 +15,7 @@ provider "aws" {
   secret_key = "${var.secretKey}"
   region     = "us-east-1"
 }
-resource "aws_security_group" "NSRA-WL-Webapps-TLS" {
+resource "aws_security_group" "NSRA-WL-Webapps-TLS_sus" {
   name   = "NSRA-WL-Webapps-TLS_sus"
   vpc_id = "vpc-0eaa852c4918ad316"
 
@@ -58,7 +58,10 @@ resource "aws_instance" "example" {
   tags = {
     Name ="cloud_infra_server_1"
     }
-  security_group_id = aws_security_group.NSRA-WL-Webapps-TLS.id
+}
+resource "aws_network_interface_sg_attachment" "sg_attachment" {
+  security_group_id    = aws_security_group.NSRA-WL-Webapps-TLS_sus.id
+  network_interface_id = aws_instance.example.primary_network_interface_id
 }
 
 #resource "aws_s3_bucket" "b" {
