@@ -13,13 +13,13 @@ variable "secretKey" {
 provider "aws" {
   access_key = "${var.accessKey}"
   secret_key = "${var.secretKey}"
-  region     = "us-east-1"
+  region     = "us-east-2"
 }
 resource "aws_security_group" "NSRA-WL-Webapps-TLS_sus" {
   name   = "NSRA-WL-Webapps-TLS_sus"
   #vpc_id = "vpc-0eaa852c4918ad316"
 
-  # Http access 
+  # Http access
   ingress {
     description = "TLS from VPC"
     from_port   = 80
@@ -47,14 +47,14 @@ data "aws_ami" "ubuntu" {
     name   = "name"
     values = ["sushil-packer-ami*"]
   }
-  owners = ["254974886611"]
+  owners = ["035067754951"]
 }
 
 resource "aws_instance" "example" {
   #ami           = ""
  ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name = "cloud_infra_key1"
+  key_name = "NS-CM-WEB-TF"
   tags = {
     Name ="cloud_infra_server_1"
     }
